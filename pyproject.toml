@@ -3,8 +3,8 @@ requires = ["scikit-build-core", "pybind11"]
 build-backend = "scikit_build_core.build"
 
 [project]
-name = "PythonOrca"
-version = "0.2.2"
+name = "pyrvo"
+version = "0.2.3"
 description = "Python bindings for ORCA (Optimal Reciprocal Collision Avoidance) library"
 authors = [
     { name = "Han Ruihua", email = "hanrh@connect.hku.hk" }
