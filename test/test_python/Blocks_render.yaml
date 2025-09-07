@@ -1,0 +1,52 @@
+world:
+  height: 420 
+  width: 420  
+  step_time: 0.25 
+  sample_time: 0.25
+  offset: [-210, -210]
+
+robot:
+  number: 100
+  kinematics: {name: 'omni'}  
+  shape: {name: 'circle', radius: 1.0}  
+  color: 'g'
+  vel_max: [2, 2]
+  vel_min: [-2, -2]
+  plot:
+    show_trajectory: True
+    show_goal: True
+    keep_traj_length: 50
+
+obstacle:
+  number: 4
+  shape: 
+    - name: 'polygon'
+      vertices:
+        - [-10, 40]
+        - [-40, 40]
+        - [-40, 10]
+        - [-10, 10]
+    
+    - name: 'polygon'
+      vertices:
+        - [10, 40]
+        - [10, 10]
+        - [40, 10]
+        - [40, 40]
+
+    - name: 'polygon'
+      vertices:
+        - [10, -40]
+        - [40, -40]
+        - [40, -10]
+        - [10, -10]
+
+    - name: 'polygon'
+      vertices:
+        - [-10, -40]
+        - [-10, -10]
+        - [-40, -10]
+        - [-40, -40]
+        
+
+    
