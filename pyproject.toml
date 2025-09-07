@@ -27,3 +27,6 @@ dependencies = [
 
 [tool.setuptools]
 packages = []
+
+[project.urls]
+"Repository" = "https://github.com/hanruihua/pyrvo"
