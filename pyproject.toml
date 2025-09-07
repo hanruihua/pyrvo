@@ -4,7 +4,7 @@ build-backend = "scikit_build_core.build"
 
 [project]
 name = "pyrvo"
-version = "0.2.3"
+version = "0.3.0"
 description = "Python bindings for ORCA (Optimal Reciprocal Collision Avoidance) library"
 authors = [
     { name = "Han Ruihua", email = "hanrh@connect.hku.hk" }
