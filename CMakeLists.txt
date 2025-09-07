@@ -302,7 +302,8 @@ if(WARNINGS_AS_ERRORS)
 endif()
 
 # Build the library before the tests
-add_subdirectory(pyorca/src)
+add_subdirectory(pyorca)
+# add_subdirectory(pyorca/src)
 
 # Add C++ examples/tests (guarded by BUILD_TESTING inside)
 add_subdirectory(test/test_cpp)

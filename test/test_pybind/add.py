@@ -1,3 +1,3 @@
-import example
+import add_example
 
-print(example.add(i=1, j=2))
+print(add_example.multiply(10, 2))
