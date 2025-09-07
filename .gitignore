@@ -177,4 +177,4 @@ dmypy.json
 test.py
 
 .vscode/
-pyorca/__pycache__/__init__.cpython-310.pyc
+pyrvo/__pycache__/__init__.cpython-310.pyc

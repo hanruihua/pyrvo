@@ -1,7 +1,7 @@
 import math
 import random
 
-import pyorca
+import pyrvo
 
 
 def v_add(a, b):
@@ -95,7 +95,7 @@ def reached_goal(sim, goals):
 
 
 if __name__ == "__main__":
-    sim = pyorca.RVOSimulator()
+    sim = pyrvo.RVOSimulator()
     goals = setup_scenario(sim)
 
     while True:

@@ -1,21 +1,21 @@
-# pyorca
+# pyrvo
 
-pyorca is a Python binding for [ORCA (Optimal Reciprocal Collision Avoidance) library](https://github.com/snape/RVO2). It provides a Python interface with similar API as original ORCA.
+pyrvo is a Python binding for [ORCA (Optimal Reciprocal Collision Avoidance) library](https://github.com/snape/RVO2). It provides a Python interface with similar API as original ORCA.
 
 ## Installation
 
 ### Build from source
 
 ```
-git clone https://github.com/hanruihua/pyorca.git
-cd pyorca
+git clone https://github.com/hanruihua/pyrvo.git
+cd pyrvo
 pip install -e .
 ```
 
 ### Install from PyPI
 
 ```
-pip install pyorca
+pip install pyrvo
 ```
 
 ## Example

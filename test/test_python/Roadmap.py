@@ -3,7 +3,7 @@ import random
 from dataclasses import dataclass, field
 from typing import List, Tuple
 
-import pyorca
+import pyrvo
 
 
 Vec = Tuple[float, float]
@@ -39,7 +39,7 @@ class RoadmapVertex:
     dist_to_goal: List[float] = field(default_factory=list)
 
 
-def setup_scenario(sim: pyorca.RVOSimulator,
+def setup_scenario(sim: pyrvo.RVOSimulator,
                    roadmap: List[RoadmapVertex],
                    goals: List[int]) -> None:
     random.seed()
@@ -82,7 +82,7 @@ def setup_scenario(sim: pyorca.RVOSimulator,
             goals.append(3)
 
 
-def build_roadmap(sim: pyorca.RVOSimulator, roadmap: List[RoadmapVertex]) -> None:
+def build_roadmap(sim: pyrvo.RVOSimulator, roadmap: List[RoadmapVertex]) -> None:
     # Visibility-based neighbors
     for i in range(len(roadmap)):
         for j in range(len(roadmap)):
@@ -110,7 +110,7 @@ def build_roadmap(sim: pyorca.RVOSimulator, roadmap: List[RoadmapVertex]) -> Non
             roadmap[i].dist_to_goal[goal_idx] = dist[i]
 
 
-def set_preferred_velocities(sim: pyorca.RVOSimulator,
+def set_preferred_velocities(sim: pyrvo.RVOSimulator,
                               roadmap: List[RoadmapVertex],
                               goals: List[int]) -> None:
     for i in range(sim.get_num_agents()):
@@ -144,7 +144,7 @@ def set_preferred_velocities(sim: pyorca.RVOSimulator,
         sim.set_agent_pref_velocity(i, v_add(cur, (jitter[0] * dist, jitter[1] * dist)))
 
 
-def reached_goal(sim: pyorca.RVOSimulator,
+def reached_goal(sim: pyrvo.RVOSimulator,
                  roadmap: List[RoadmapVertex],
                  goals: List[int]) -> bool:
     for i in range(sim.get_num_agents()):
@@ -156,7 +156,7 @@ def reached_goal(sim: pyorca.RVOSimulator,
 
 
 if __name__ == "__main__":
-    sim = pyorca.RVOSimulator()
+    sim = pyrvo.RVOSimulator()
     roadmap: List[RoadmapVertex] = []
     goals: List[int] = []
     setup_scenario(sim, roadmap, goals)

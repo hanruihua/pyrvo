@@ -40,7 +40,7 @@ std::vector<RVO::Vector2> iterable_to_vector2_list(const py::object &iterable) {
 }
 
 
-PYBIND11_MODULE(pyorca, m) {
+PYBIND11_MODULE(pyrvo, m) {
     m.doc() = "ORCA algorithm python bindings"; // optional module docstring
 
     py::class_<RVO::Vector2>(m, "Vector2")

@@ -1,5 +1,5 @@
 import math
-import pyorca
+import pyrvo
 import irsim
 import numpy as np
 
@@ -62,7 +62,7 @@ def reached_goal(sim, goals):
 
 
 if __name__ == "__main__":
-    sim = pyorca.RVOSimulator()
+    sim = pyrvo.RVOSimulator()
     
     env = irsim.make(save_ani=True)
 
