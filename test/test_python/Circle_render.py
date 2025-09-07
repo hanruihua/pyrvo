@@ -56,6 +56,9 @@ if __name__ == "__main__":
 
     env = irsim.make()
 
+    for i in range(env.robot_number):
+        env.robot_list[i].set_goal([goals[i][0], goals[i][1]])
+
     while True:
         print(sim.get_global_time())
         print(sim.get_agent_position(0).to_tuple())
@@ -64,8 +67,7 @@ if __name__ == "__main__":
 
         for i in range(env.robot_number):
             env.robot_list[i].set_state([sim.get_agent_position(i).to_tuple()[0], sim.get_agent_position(i).to_tuple()[1], 0])
-            env.robot_list[i].set_goal([goals[i][0], goals[i][1]])
-
+            
         env.render()
 
         if reached_goal(sim, goals):
