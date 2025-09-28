@@ -1,6 +1,6 @@
 # pyrvo
 
-pyrvo is a Python binding for [ORCA (Optimal Reciprocal Collision Avoidance) library](https://github.com/snape/RVO2). It provides a Python interface with similar API as original ORCA.
+pyrvo is a Python binding for [ORCA (Optimal Reciprocal Collision Avoidance) library](https://github.com/snape/RVO2). It provides a Python interface with similar API as original ORCA and render with [ir-sim](https://github.com/hanruihua/ir-sim).
 
 ## Installation
 
