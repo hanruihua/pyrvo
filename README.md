@@ -24,7 +24,7 @@ pip install pyrvo
 python test/test_python/Circle_render.py
 ```
 
-<img src="https://github.com/user-attachments/assets/b208ac3c-df44-466e-940f-01c42eb5a847" width="350" />
+<img src="https://github.com/user-attachments/assets/b208ac3c-df44-466e-940f-01c42eb5a847" width="350"/>
 
 ```
 python test/test_python/Blocks_render.py
