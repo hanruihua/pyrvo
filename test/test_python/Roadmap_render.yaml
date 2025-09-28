@@ -1,9 +1,9 @@
 world:
-  height: 420 
-  width: 420  
+  height: 200 
+  width: 200  
   step_time: 0.25 
   sample_time: 0.25
-  offset: [-210, -210]
+  offset: [-100, -100]
 
 robot:
   number: 100

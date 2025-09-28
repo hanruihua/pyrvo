@@ -54,7 +54,7 @@ if __name__ == "__main__":
     sim = pyrvo.RVOSimulator()
     goals = setup_scenario(sim)
 
-    env = irsim.make()
+    env = irsim.make(save_ani=False, display=True)
 
     for i in range(env.robot_number):
         env.robot_list[i].set_goal([goals[i][0], goals[i][1]])
@@ -67,9 +67,12 @@ if __name__ == "__main__":
 
         for i in range(env.robot_number):
             env.robot_list[i].set_state([sim.get_agent_position(i).to_tuple()[0], sim.get_agent_position(i).to_tuple()[1], 0])
-            
+        
+        env.step()
         env.render()
 
         if reached_goal(sim, goals):
             break
+
+    env.end()
 
