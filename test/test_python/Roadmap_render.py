@@ -162,7 +162,7 @@ if __name__ == "__main__":
     setup_scenario(sim, roadmap, goals)
     build_roadmap(sim, roadmap)
 
-    env = irsim.make(save_ani=True, display=False)
+    env = irsim.make(save_ani=False, display=True)
 
     for i in range(env.robot_number):
         x = roadmap[goals[i]].position[0]

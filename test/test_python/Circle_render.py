@@ -54,7 +54,7 @@ if __name__ == "__main__":
     sim = pyrvo.RVOSimulator()
     goals = setup_scenario(sim)
 
-    env = irsim.make(save_ani=True, display=False)
+    env = irsim.make(save_ani=False, display=True)
 
     for i in range(env.robot_number):
         env.robot_list[i].set_goal([goals[i][0], goals[i][1]])

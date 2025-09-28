@@ -98,7 +98,7 @@ if __name__ == "__main__":
     sim = pyrvo.RVOSimulator()
     goals = setup_scenario(sim)
 
-    env = irsim.make(save_ani=True, display=False)
+    env = irsim.make(save_ani=False, display=True)
 
     while True:
         # Print time and positions (like C++ demo)
