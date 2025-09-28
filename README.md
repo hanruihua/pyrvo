@@ -18,21 +18,19 @@ pip install -e .
 pip install pyrvo
 ```
 
-## Example
+## ORCA Example
 
 ```
 python test/test_python/Circle_render.py
-```
 
-![](https://github.com/user-attachments/assets/b208ac3c-df44-466e-940f-01c42eb5a847)
-
-```
 python test/test_python/Blocks_render.py
-```
 
-```
 python test/test_python/Roadmap_render.py
 ```
+
+<div align="center">
+<img src="/animation/circle.gif" width="230"/><img src="/animation/blocks.gif" width="230"/><img src="/animation/roadmap.gif" width="230"/>
+</div>
 
 
 
