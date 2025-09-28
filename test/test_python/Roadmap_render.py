@@ -162,7 +162,7 @@ if __name__ == "__main__":
     setup_scenario(sim, roadmap, goals)
     build_roadmap(sim, roadmap)
 
-    env = irsim.make(save_ani=False, display=True)
+    env = irsim.make(save_ani=True, display=False)
 
     for i in range(env.robot_number):
         x = roadmap[goals[i]].position[0]
@@ -188,4 +188,4 @@ if __name__ == "__main__":
         if reached_goal(sim, roadmap, goals):
             break
 
-    env.end()
+    env.end(ani_name='roadmap')

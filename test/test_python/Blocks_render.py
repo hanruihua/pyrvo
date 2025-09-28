@@ -98,7 +98,7 @@ if __name__ == "__main__":
     sim = pyrvo.RVOSimulator()
     goals = setup_scenario(sim)
 
-    env = irsim.make(save_ani=False, display=True)
+    env = irsim.make(save_ani=True, display=False)
 
     while True:
         # Print time and positions (like C++ demo)
@@ -120,4 +120,4 @@ if __name__ == "__main__":
         if reached_goal(sim, goals):
             break
 
-    env.end()
+    env.end(ani_name='blocks')
