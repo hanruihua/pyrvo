@@ -80,6 +80,10 @@ if(WIN32)
   target_compile_definitions(${RVO_LIBRARY} PUBLIC NOMINMAX)
 endif()
 
+if(MACOS)
+  target_compile_definitions(${RVO_LIBRARY} PUBLIC VERSION_INFO=${PROJECT_VERSION})
+endif()
+
 if(ENABLE_OPENMP AND OpenMP_FOUND)
   set_target_properties(${RVO_LIBRARY} PROPERTIES
     LINK_FLAGS "${OpenMP_CXX_FLAGS}")
