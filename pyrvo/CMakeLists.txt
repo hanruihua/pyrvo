@@ -1,8 +1,3 @@
-# cmake_minimum_required(VERSION 3.16)
-# project(pyrvo
-#   VERSION 0.4.1
-#   LANGUAGES CXX)
-
 find_package(pybind11 CONFIG REQUIRED)
 
 add_subdirectory(src)
