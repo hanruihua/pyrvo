@@ -1,6 +1,15 @@
 cmake_minimum_required(VERSION 3.16)
+
+# Use version from pyproject.toml when building via scikit-build-core
+if(DEFINED SKBUILD_PROJECT_VERSION)
+  set(_PYRVO_VERSION ${SKBUILD_PROJECT_VERSION})
+else()
+  # Fallback if building without scikit-build; keep in sync with pyproject.toml
+  set(_PYRVO_VERSION "0.4.0")
+endif()
+
 project(pyrvo
-  VERSION 0.3.4
+  VERSION ${_PYRVO_VERSION}
   LANGUAGES CXX)
 
 find_package(pybind11 CONFIG REQUIRED)
