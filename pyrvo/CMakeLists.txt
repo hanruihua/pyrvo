@@ -11,11 +11,15 @@ install(TARGETS pyrvo DESTINATION .)
 
 target_link_libraries(pyrvo PRIVATE RVO)
 
+target_compile_definitions(_core PRIVATE VERSION_INFO=${PROJECT_VERSION})
+
 set_target_properties(
     ${target_name} 
     PROPERTIES 
     INSTALL_RPATH 
     "${CMAKE_INSTALL_RPATH};${CMAKE_INSTALL_PREFIX}/lib;${CMAKE_SOURCE_DIR}/path/to/shared/lib") 
+
+
 
 # set_target_properties(pyrvo PROPERTIES PREFIX "" OUTPUT_NAME "pyrvo")
 # if(WIN32)
