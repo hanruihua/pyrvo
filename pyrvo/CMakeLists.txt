@@ -4,14 +4,13 @@ project(pyrvo
   LANGUAGES CXX)
 
 find_package(pybind11 CONFIG REQUIRED)
-find_package(RVO MODULE REQUIRED)
 
 add_subdirectory(src)
 pybind11_add_module(pyrvo orca_bind.cpp)
 
 set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 
-target_link_libraries(pyrvo PRIVATE RVO)
+target_link_libraries(pyrvo PUBLIC RVO)
 
 install(TARGETS pyrvo DESTINATION .)
 
