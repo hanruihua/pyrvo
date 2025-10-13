@@ -4,6 +4,8 @@ project(pyrvo
   LANGUAGES CXX)
 
 find_package(pybind11 CONFIG REQUIRED)
+find_package(RVO MODULE REQUIRED)
+
 add_subdirectory(src)
 pybind11_add_module(pyrvo orca_bind.cpp)
 
