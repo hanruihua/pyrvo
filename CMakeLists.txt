@@ -69,6 +69,12 @@ else()
   option(BUILD_SHARED_LIBS "Build all libraries as shared" ON)
 endif()
 
+# Ensure proper library naming for shared libraries
+if(BUILD_SHARED_LIBS)
+  set(CMAKE_SHARED_LIBRARY_PREFIX "lib")
+  set(CMAKE_SHARED_LIBRARY_SUFFIX ".so")
+endif()
+
 include(GNUInstallDirs)
 
 set(RVO_DIR ${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME})
