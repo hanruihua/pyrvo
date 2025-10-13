@@ -1,25 +1,63 @@
-cmake_minimum_required(VERSION 3.15...4.0)
-project(pyrvo LANGUAGES CXX)
+cmake_minimum_required(VERSION 3.16)
+project(pyrvo
+  VERSION 0.3.4
+  LANGUAGES CXX)
 
-set(PYBIND11_FINDPYTHON ON)
 find_package(pybind11 CONFIG REQUIRED)
 
 add_subdirectory(src)
-
 pybind11_add_module(pyrvo orca_bind.cpp)
-install(TARGETS pyrvo DESTINATION .)
 
-target_link_libraries(pyrvo PRIVATE RVO)
+set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 
-set_target_properties(
-    ${target_name} 
-    PROPERTIES 
-    INSTALL_RPATH 
-    "${CMAKE_INSTALL_RPATH};${CMAKE_INSTALL_PREFIX}/lib;${CMAKE_SOURCE_DIR}/path/to/shared/lib") 
+target_link_libraries(pyrvo PUBLIC RVO)
 
-# set_target_properties(pyrvo PROPERTIES PREFIX "" OUTPUT_NAME "pyrvo")
-# if(WIN32)
-#   set_target_properties(pyrvo PROPERTIES SUFFIX ".pyd")
-# endif()
-# install(TARGETS pyrvo DESTINATION .)
+# Ensure the Python extension looks for libRVO next to itself
+if(UNIX AND NOT APPLE AND BUILD_SHARED_LIBS)
+  set_target_properties(pyrvo PROPERTIES
+    BUILD_WITH_INSTALL_RPATH TRUE
+    INSTALL_RPATH "$ORIGIN/.libs:$ORIGIN"
+    BUILD_RPATH "$ORIGIN/.libs:$ORIGIN")
+endif()
+
+# macOS: use @loader_path to locate bundled dylib next to the extension
+if(APPLE AND BUILD_SHARED_LIBS)
+  set_target_properties(pyrvo PROPERTIES
+    BUILD_WITH_INSTALL_RPATH TRUE
+    INSTALL_RPATH "@loader_path/.dylibs:@loader_path"
+    BUILD_RPATH "@loader_path/.dylibs:@loader_path")
+endif()
+
+install(TARGETS pyrvo DESTINATION pyrvo)
+
+# Bundle the native library inside the wheel so audit tools can find it
+if(UNIX AND BUILD_SHARED_LIBS)
+  # Install the RVO shared library target next to the extension so wheel tools can bundle it
+  if(APPLE)
+    set(_WHEEL_LIBDIR .dylibs)
+  else()
+    set(_WHEEL_LIBDIR .libs)
+  endif()
+  install(TARGETS RVO
+    LIBRARY DESTINATION pyrvo/${_WHEEL_LIBDIR}
+    RUNTIME DESTINATION pyrvo/${_WHEEL_LIBDIR}
+    ARCHIVE DESTINATION pyrvo/${_WHEEL_LIBDIR})
+
+  # Ensure the SONAME-named file exists with the exact basename tools search for
+  if(APPLE)
+    # Provide libRVO.0.dylib explicitly (in addition to any versioned realname)
+    install(FILES $<TARGET_FILE:RVO>
+      DESTINATION pyrvo/${_WHEEL_LIBDIR}
+      RENAME libRVO.0.dylib)
+    # Also provide the linker name commonly referenced
+    install(FILES $<TARGET_FILE:RVO>
+      DESTINATION pyrvo/${_WHEEL_LIBDIR}
+      RENAME libRVO.dylib)
+  else()
+    # Provide libRVO.so.0 explicitly on Linux
+    install(FILES $<TARGET_FILE:RVO>
+      DESTINATION pyrvo/${_WHEEL_LIBDIR}
+      RENAME libRVO.so.0)
+  endif()
+endif()
 

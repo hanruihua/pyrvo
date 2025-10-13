@@ -62,9 +62,11 @@ generate_export_header(${RVO_LIBRARY} EXPORT_FILE_NAME Export.h)
 set_target_properties(${RVO_LIBRARY} PROPERTIES
   CXX_VISIBILITY_PRESET hidden
   PUBLIC_HEADER "${RVO_HEADERS}"
-  SOVERSION ${PROJECT_VERSION_MAJOR}
+  SOVERSION 0
   VERSION ${PROJECT_VERSION}
-  VISIBILITY_INLINES_HIDDEN ON)
+  VISIBILITY_INLINES_HIDDEN ON
+  OUTPUT_NAME RVO
+  CLEAN_DIRECT_OUTPUT 1)
 
 if(ENABLE_INTERPROCEDURAL_OPTIMIZATION
     AND RVO_INTERPROCEDURAL_OPTIMIZATION_SUPPORTED)
@@ -78,6 +80,16 @@ target_include_directories(${RVO_LIBRARY} PUBLIC
 
 if(WIN32)
   target_compile_definitions(${RVO_LIBRARY} PUBLIC NOMINMAX)
+endif()
+
+if(APPLE)
+  # Proper install_name and rpath handling on macOS
+  # Embed @loader_path so the extension records a dependency that resolves inside the wheel
+  set_target_properties(${RVO_LIBRARY} PROPERTIES
+    MACOSX_RPATH ON
+    INSTALL_NAME_DIR "@loader_path/.dylibs"
+  )
+  target_compile_definitions(${RVO_LIBRARY} PUBLIC VERSION_INFO=${PROJECT_VERSION})
 endif()
 
 if(ENABLE_OPENMP AND OpenMP_FOUND)
