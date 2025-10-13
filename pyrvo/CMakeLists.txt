@@ -1,7 +1,7 @@
-cmake_minimum_required(VERSION 3.16)
-project(pyrvo
-  VERSION 0.3.4
-  LANGUAGES CXX)
+# cmake_minimum_required(VERSION 3.16)
+# project(pyrvo
+#   VERSION 0.4.1
+#   LANGUAGES CXX)
 
 find_package(pybind11 CONFIG REQUIRED)
 
@@ -29,6 +29,9 @@ if(APPLE AND BUILD_SHARED_LIBS)
 endif()
 
 install(TARGETS pyrvo DESTINATION pyrvo)
+
+# Install Python package shim to expose the extension at package import
+install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/__init__.py DESTINATION pyrvo)
 
 # Bundle the native library inside the wheel so audit tools can find it
 if(UNIX AND BUILD_SHARED_LIBS)
