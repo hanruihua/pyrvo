@@ -28,7 +28,7 @@ if(APPLE AND BUILD_SHARED_LIBS)
     BUILD_RPATH "@loader_path/.dylibs:@loader_path")
 endif()
 
-install(TARGETS pyrvo DESTINATION .)
+install(TARGETS pyrvo DESTINATION pyrvo)
 
 # Bundle the native library inside the wheel so audit tools can find it
 if(UNIX AND BUILD_SHARED_LIBS)
@@ -39,8 +39,25 @@ if(UNIX AND BUILD_SHARED_LIBS)
     set(_WHEEL_LIBDIR .libs)
   endif()
   install(TARGETS RVO
-    LIBRARY DESTINATION ${_WHEEL_LIBDIR}
-    RUNTIME DESTINATION ${_WHEEL_LIBDIR}
-    ARCHIVE DESTINATION ${_WHEEL_LIBDIR})
+    LIBRARY DESTINATION pyrvo/${_WHEEL_LIBDIR}
+    RUNTIME DESTINATION pyrvo/${_WHEEL_LIBDIR}
+    ARCHIVE DESTINATION pyrvo/${_WHEEL_LIBDIR})
+
+  # Ensure the SONAME-named file exists with the exact basename tools search for
+  if(APPLE)
+    # Provide libRVO.0.dylib explicitly (in addition to any versioned realname)
+    install(FILES $<TARGET_FILE:RVO>
+      DESTINATION pyrvo/${_WHEEL_LIBDIR}
+      RENAME libRVO.0.dylib)
+    # Also provide the linker name commonly referenced
+    install(FILES $<TARGET_FILE:RVO>
+      DESTINATION pyrvo/${_WHEEL_LIBDIR}
+      RENAME libRVO.dylib)
+  else()
+    # Provide libRVO.so.0 explicitly on Linux
+    install(FILES $<TARGET_FILE:RVO>
+      DESTINATION pyrvo/${_WHEEL_LIBDIR}
+      RENAME libRVO.so.0)
+  endif()
 endif()
 

@@ -84,9 +84,10 @@ endif()
 
 if(APPLE)
   # Proper install_name and rpath handling on macOS
+  # Embed @loader_path so the extension records a dependency that resolves inside the wheel
   set_target_properties(${RVO_LIBRARY} PROPERTIES
     MACOSX_RPATH ON
-    INSTALL_NAME_DIR "@rpath"
+    INSTALL_NAME_DIR "@loader_path/.dylibs"
   )
   target_compile_definitions(${RVO_LIBRARY} PUBLIC VERSION_INFO=${PROJECT_VERSION})
 endif()
