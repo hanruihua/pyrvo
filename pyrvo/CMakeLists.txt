@@ -11,7 +11,7 @@ install(TARGETS pyrvo DESTINATION .)
 
 target_link_libraries(pyrvo PRIVATE RVO)
 
-target_compile_definitions(_core PRIVATE VERSION_INFO=${PROJECT_VERSION})
+target_compile_definitions(pyrvo PRIVATE VERSION_INFO=${PROJECT_VERSION})
 
 set_target_properties(
     ${target_name} 
