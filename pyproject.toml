@@ -28,5 +28,8 @@ dependencies = [
 [tool.setuptools]
 packages = []
 
+[tool.cibuildwheel]
+build-frontend = "build[uv]"
+
 [project.urls]
 "Repository" = "https://github.com/hanruihua/pyrvo"
