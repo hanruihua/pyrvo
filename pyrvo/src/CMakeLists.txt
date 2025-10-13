@@ -82,7 +82,12 @@ if(WIN32)
   target_compile_definitions(${RVO_LIBRARY} PUBLIC NOMINMAX)
 endif()
 
-if(MACOS)
+if(APPLE)
+  # Proper install_name and rpath handling on macOS
+  set_target_properties(${RVO_LIBRARY} PROPERTIES
+    MACOSX_RPATH ON
+    INSTALL_NAME_DIR "@rpath"
+  )
   target_compile_definitions(${RVO_LIBRARY} PUBLIC VERSION_INFO=${PROJECT_VERSION})
 endif()
 

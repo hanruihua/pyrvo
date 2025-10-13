@@ -13,11 +13,19 @@ set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 target_link_libraries(pyrvo PUBLIC RVO)
 
 # Ensure the Python extension looks for libRVO next to itself
-if(UNIX AND BUILD_SHARED_LIBS)
+if(UNIX AND NOT APPLE AND BUILD_SHARED_LIBS)
   set_target_properties(pyrvo PROPERTIES
     BUILD_WITH_INSTALL_RPATH TRUE
     INSTALL_RPATH "$ORIGIN/.libs:$ORIGIN"
     BUILD_RPATH "$ORIGIN/.libs:$ORIGIN")
+endif()
+
+# macOS: use @loader_path to locate bundled dylib next to the extension
+if(APPLE AND BUILD_SHARED_LIBS)
+  set_target_properties(pyrvo PROPERTIES
+    BUILD_WITH_INSTALL_RPATH TRUE
+    INSTALL_RPATH "@loader_path/.libs:@loader_path"
+    BUILD_RPATH "@loader_path/.libs:@loader_path")
 endif()
 
 install(TARGETS pyrvo DESTINATION .)
