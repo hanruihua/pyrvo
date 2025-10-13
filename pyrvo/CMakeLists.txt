@@ -25,6 +25,11 @@ install(TARGETS pyrvo DESTINATION .)
 # Bundle the native library inside the wheel so audit tools can find it
 if(UNIX AND BUILD_SHARED_LIBS)
   # Copy the built shared library next to the extension under .libs
-  install(FILES $<TARGET_FILE:RVO> DESTINATION pyrvo/.libs)
+  # Include the real file, the SONAME link (libRVO.so.0), and the linker name (libRVO.so)
+  install(FILES
+    $<TARGET_FILE:RVO>
+    $<TARGET_SONAME_FILE:RVO>
+    $<TARGET_LINKER_FILE:RVO>
+    DESTINATION .libs)
 endif()
 
