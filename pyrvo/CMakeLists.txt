@@ -8,18 +8,9 @@ add_subdirectory(src)
 
 pybind11_add_module(pyrvo orca_bind.cpp)
 
-
 target_link_libraries(pyrvo PRIVATE RVO)
 
 target_compile_definitions(pyrvo PRIVATE VERSION_INFO=${PROJECT_VERSION})
 
-
 install(TARGETS pyrvo DESTINATION .)
-
-
-# set_target_properties(pyrvo PROPERTIES PREFIX "" OUTPUT_NAME "pyrvo")
-# if(WIN32)
-#   set_target_properties(pyrvo PROPERTIES SUFFIX ".pyd")
-# endif()
-# install(TARGETS pyrvo DESTINATION .)
 
