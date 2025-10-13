@@ -460,6 +460,11 @@ class RVO_EXPORT RVOSimulator {
   void processObstacles();
 
   /**
+   * @brief Clears all agents from the simulation.
+   */
+  void clearAgents();
+
+  /**
    * @brief     Performs a visibility query between the two specified points
    *            with respect to the obstacles
    * @param[in] point1 The first point of the query.

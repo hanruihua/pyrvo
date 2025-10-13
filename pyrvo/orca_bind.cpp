@@ -150,5 +150,6 @@ PYBIND11_MODULE(pyrvo, m) {
             self.setAgentVelocity(agent_no, sequence_to_vector(p));
         })
         .def("set_time_step", &RVOSIM::setTimeStep)
-        .def("get_time_step", &RVOSIM::getTimeStep);
-    }
+        .def("get_time_step", &RVOSIM::getTimeStep)
+        .def("clear_agents", &RVOSIM::clearAgents);
+}

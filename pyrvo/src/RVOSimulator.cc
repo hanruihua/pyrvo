@@ -368,4 +368,11 @@ void RVOSimulator::setAgentVelocity(std::size_t agentNo,
                                     const Vector2 &velocity) {
   agents_[agentNo]->velocity_ = velocity;
 }
+
+void RVOSimulator::clearAgents() {
+  for (std::size_t i = 0U; i < agents_.size(); ++i) {
+    delete agents_[i];
+  }
+  agents_.clear();
+}
 } /* namespace RVO */
