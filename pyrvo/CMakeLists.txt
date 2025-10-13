@@ -24,20 +24,23 @@ endif()
 if(APPLE AND BUILD_SHARED_LIBS)
   set_target_properties(pyrvo PROPERTIES
     BUILD_WITH_INSTALL_RPATH TRUE
-    INSTALL_RPATH "@loader_path/.libs:@loader_path"
-    BUILD_RPATH "@loader_path/.libs:@loader_path")
+    INSTALL_RPATH "@loader_path/.dylibs:@loader_path"
+    BUILD_RPATH "@loader_path/.dylibs:@loader_path")
 endif()
 
 install(TARGETS pyrvo DESTINATION .)
 
 # Bundle the native library inside the wheel so audit tools can find it
 if(UNIX AND BUILD_SHARED_LIBS)
-  # Copy the built shared library next to the extension under .libs
-  # Include the real file, the SONAME link (libRVO.so.0), and the linker name (libRVO.so)
-  install(FILES
-    $<TARGET_FILE:RVO>
-    $<TARGET_SONAME_FILE:RVO>
-    $<TARGET_LINKER_FILE:RVO>
-    DESTINATION .libs)
+  # Install the RVO shared library target next to the extension so wheel tools can bundle it
+  if(APPLE)
+    set(_WHEEL_LIBDIR .dylibs)
+  else()
+    set(_WHEEL_LIBDIR .libs)
+  endif()
+  install(TARGETS RVO
+    LIBRARY DESTINATION ${_WHEEL_LIBDIR}
+    RUNTIME DESTINATION ${_WHEEL_LIBDIR}
+    ARCHIVE DESTINATION ${_WHEEL_LIBDIR})
 endif()
 
