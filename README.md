@@ -21,7 +21,7 @@ pip install pyrvo
 ## ORCA Example
 
 ```
-python test/test_python/Circle_render.py
+python example/python_example/Circle.py
 ```
 
 <div align="center">
@@ -29,7 +29,7 @@ python test/test_python/Circle_render.py
 </div>
 
 ```
-python test/test_python/Blocks_render.py
+python example/python_example/Blocks_render.py
 ```
 
 <div align="center">
@@ -37,7 +37,7 @@ python test/test_python/Blocks_render.py
 </div>
 
 ```
-python test/test_python/Roadmap_render.py
+python example/python_example/Roadmap_render.py
 ```
 
 <div align="center">
