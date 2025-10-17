@@ -312,7 +312,7 @@ add_subdirectory(pyrvo)
 # add_subdirectory(pyrvo/src)
 
 # Add C++ examples/tests (guarded by BUILD_TESTING inside)
-add_subdirectory(test/test_cpp)
+add_subdirectory(example/cpp_example)
 
 install(FILES LICENSES/Apache-2.0.txt
   COMPONENT runtime
