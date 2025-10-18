@@ -21,7 +21,7 @@ pip install pyrvo
 ## ORCA Example
 
 ```
-python example/python_example/Circle.py
+python example/python_example/Circle_render.py
 ```
 
 <div align="center">
